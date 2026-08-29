@@ -1,0 +1,17 @@
+# ============================================
+# RelayNode-SW2USB（嘉立创 EDA 专业版工程）
+# ============================================
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 嘉立创 EDA 备份
+sw2usb_main_backup/
+hardware/sw2usb_main_backup/
+
+# 编译产物（软件部分）
+*.o
+*.elf
+*.hex
+.build/
