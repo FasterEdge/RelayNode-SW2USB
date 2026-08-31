@@ -21,7 +21,7 @@ RelayNode-SW2USB/
 ├── sw2usb_main.eprj2           # 嘉立创 EDA 专业版工程文件（原理图+PCB）
 ├── sw2usb_main_backup/         # EDA 自动备份（.epro2 快照）
 ├── hardware/                   # 硬件相关导出/备份
-├── software/                   # 固件占位（固件见 MCU-PY32F003）
+├── software/                   # CH552G Keil C51 USB HID 固件与烧录说明
 ├── BOM.txt                     # 元器件清单
 ├── LICENSE                     # Apache-2.0
 └── README.md
@@ -32,7 +32,7 @@ RelayNode-SW2USB/
 1. 下载安装**嘉立创 EDA 专业版**（立创EDA专业版）
 2. 打开 `sw2usb_main.eprj2` 工程（原理图 / PCB 均已绘制）
 3. 查看 `BOM.txt`：主控为 CH552G，USB-C 接口与 4 路开关/GND 端子均已列出
-4. 为 CH552G 编译并烧录 USB HID、USB CDC 或厂商自定义设备固件；SW1-SW4 的具体上拉方式与 USB 协议由固件确定
+4. 按 `software/README.md` 使用 Keil C51 + WCH CH55x SDK 编译并烧录 USB HID 固件；SW1-SW4 以一字节位图上报
 
 **硬件接口：**
 
