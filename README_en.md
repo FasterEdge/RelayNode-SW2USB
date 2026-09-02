@@ -8,7 +8,7 @@
 
 **RelayNode-SW2USB** is a FasterEdge hardware input node built around the **CH552G** MCU. It communicates through the MCU's native USB D+/D- interface and provides **four switch inputs (SW1-SW4)**. The hardware is designed in **JLCEDA Pro** (.eprj2).
 
-- ✅ JLCEDA Pro project (`sw2usb_main.eprj2`), open the single file
+- ✅ JLCEDA Pro project (`hardware/sw2usb_main.eprj2`), open the single file
 - ✅ **CH552G** MCU (enhanced 8051 with native USB device interface)
 - ✅ USB-C power and data, with independent 5.1kΩ CC1/CC2 pull-down resistors
 - ✅ Four switch input terminals plus four paired ground terminals
@@ -18,10 +18,8 @@
 
 ```
 RelayNode-SW2USB/
-├── sw2usb_main.eprj2           # JLCEDA Pro project file (schematic + PCB)
-├── sw2usb_main_backup/         # EDA auto backups (.epro2 snapshots)
-├── hardware/                   # hardware exports/backups
-├── software/                   # firmware placeholder (see MCU-PY32F003)
+├── hardware/                   # JLCEDA Pro project (.eprj2) and hardware files
+├── firmware/                   # CH552G Keil C51 USB HID firmware and flashing docs
 ├── BOM.txt                     # bill of materials
 ├── LICENSE                     # Apache-2.0
 └── README.md
@@ -30,7 +28,7 @@ RelayNode-SW2USB/
 ### 3. Usage
 
 1. Install **JLCEDA Professional** (LCEDA Pro)
-2. Open the `sw2usb_main.eprj2` project (schematic / PCB included)
+2. Open the `hardware/sw2usb_main.eprj2` project (schematic / PCB included)
 3. Check `BOM.txt`: it lists the CH552G MCU, USB-C connector, and all four switch/ground terminals
 4. Build and flash suitable CH552G USB HID, USB CDC, or vendor-specific device firmware; input pull-up behavior and the USB protocol are firmware-defined
 

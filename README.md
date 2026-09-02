@@ -8,7 +8,7 @@
 
 **RelayNode-SW2USB** 是 FasterEdge 生态的硬件输入节点：以 **CH552G** 为控制核心，通过芯片原生 USB D+/D- 与主机通信，并提供 **4 路开关输入（SW1-SW4）**。硬件工程使用**嘉立创 EDA 专业版**（.eprj2）绘制。
 
-- ✅ 嘉立创 EDA 专业版工程（`sw2usb_main.eprj2`），单文件可打开
+- ✅ 嘉立创 EDA 专业版工程（`hardware/sw2usb_main.eprj2`），单文件可打开
 - ✅ 主控 **CH552G**（增强型 8051、原生 USB 设备接口）
 - ✅ USB-C 供电与通信，CC1/CC2 各使用 5.1kΩ 下拉
 - ✅ 4 路开关输入 + 4 路配对 GND 端子
@@ -18,10 +18,8 @@
 
 ```
 RelayNode-SW2USB/
-├── sw2usb_main.eprj2           # 嘉立创 EDA 专业版工程文件（原理图+PCB）
-├── sw2usb_main_backup/         # EDA 自动备份（.epro2 快照）
-├── hardware/                   # 硬件相关导出/备份
-├── software/                   # CH552G Keil C51 USB HID 固件与烧录说明
+├── hardware/                   # 嘉立创 EDA 专业版工程（.eprj2）与硬件相关文件
+├── firmware/                   # CH552G Keil C51 USB HID 固件与烧录说明
 ├── BOM.txt                     # 元器件清单
 ├── LICENSE                     # Apache-2.0
 └── README.md
@@ -30,9 +28,9 @@ RelayNode-SW2USB/
 ### 三、使用说明
 
 1. 下载安装**嘉立创 EDA 专业版**（立创EDA专业版）
-2. 打开 `sw2usb_main.eprj2` 工程（原理图 / PCB 均已绘制）
+2. 打开 `hardware/sw2usb_main.eprj2` 工程（原理图 / PCB 均已绘制）
 3. 查看 `BOM.txt`：主控为 CH552G，USB-C 接口与 4 路开关/GND 端子均已列出
-4. 按 `software/README.md` 使用 Keil C51 + WCH CH55x SDK 编译并烧录 USB HID 固件；SW1-SW4 以一字节位图上报
+4. 按 `firmware/README.md` 使用 Keil C51 + WCH CH55x SDK 编译并烧录 USB HID 固件；SW1-SW4 以一字节位图上报
 
 **硬件接口：**
 
