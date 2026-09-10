@@ -1,0 +1,36 @@
+# FasterEdge 开源项目 - Github: https://github.com/FasterEdge - Gitee: https://gitee.com/FasterEdge
+# RelayNode-SW2USB CI: 仓库完整性检查(固件为 Keil C51 + WCH SDK 适配片段, 依赖外部 SDK 无法容器编译,
+# 故校验关键文件与文档引用完整性)。
+name: '仓库完整性检查'
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: '关键文件存在性'
+        run: |
+          set -e
+          for f in README.md README_en.md BOM.txt LICENSE \
+                   hardware/sw2usb_main.eprj2 \
+                   firmware/README.md firmware/CH552G/keil/User/main.c; do
+            if [ ! -f "$f" ]; then echo "缺失: $f"; exit 1; fi
+            echo "  OK: $f"
+          done
+      - name: '固件说明引用检查'
+        run: |
+          grep -qi 'Keil C51' firmware/README.md || { echo 'firmware/README.md 缺少 Keil C51 编译指引'; exit 1; }
+          grep -qi 'usb_hid_send_report' firmware/CH552G/keil/User/main.c || { echo 'main.c 缺少 usb_hid_send_report 适配声明'; exit 1; }
+          echo '  固件适配说明完整 OK'
+      - name: 'BOM 引用一致性'
+        run: |
+          grep -qi 'CH552' BOM.txt || { echo 'BOM.txt 缺少主控 CH552 条目'; exit 1; }
+          echo '  BOM OK'
