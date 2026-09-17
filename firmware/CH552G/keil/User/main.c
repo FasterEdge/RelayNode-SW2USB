@@ -31,8 +31,11 @@ static void send_switch_report(uint8_t value) {
 void main(void) {
     uint8_t i;
     CfgFsys();
-    P1_MOD_OC &= (uint8_t)~0x1E;
-    P1_DIR_PU |= 0x1E;
+    /* 四路开关输入引脚 P1.1-P1.4 配置为输入(DIR_PU 位=0 时内部上拉有效),
+     * 开关接 GND 闭合时读低。旧实现 |= 0x1E 把输入脚置为输出: 复位后推挽
+     * 高电平, read_inputs() 恒读到高致开关永远读不到闭合(功能失效), 且开关
+     * 闭合到 GND 时与推挽高电平形成灌电流短路(引脚/开关损坏风险)。 */
+    P1_DIR_PU &= (uint8_t)~0x1E;
     USBDeviceCfg();
     USBDeviceEndpCfg();
     USBDeviceIntCfg();
