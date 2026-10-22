@@ -42,7 +42,7 @@ RelayNode-SW2USB/
 
 ### 4. Version
 
-- **1.0.20260831** (in sync with all FasterEdge platforms)
+- **1.0.20261022** (in sync with all FasterEdge platforms)
 
 ### 5. Sibling Projects
 
